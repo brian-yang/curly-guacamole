@@ -45,18 +45,48 @@
   <!--NAV BAR-->
 
   <center>
-  {{ error }}
-  <h1>Login/Register</h1>
-  {{ message }}
-  <br/>
-  <form action="/authenticate/" method="post">
-    <input type="text" name="username" placeholder="username">
-    <br>
-    <input type="password" name="password" placeholder="password">
-    <br>
-    <br><br>
-    <input type="submit" name="submit" value="login">
-    <input type="submit" name="submit" value="register">
-  </form>
+
+  <div class="container">
+    <div class="row vdivide">
+      <div class="col-sm-6 text-center"><h1>Login</h1>
+        {{ error }}
+        <h1>Login/Register</h1>
+        {{ message }}
+        <br>
+        <form action="/authenticate/" method="post">
+          <input type="text" name="username" placeholder="username">
+          <br>
+          <input type="password" name="password" placeholder="password">
+          <br>
+          <br><br>
+          <input type="submit" name="submit" value="login">
+          <input type="submit" name="submit" value="register">
+        </form>
+      </div>
+      <div class="col-sm-6 text-center"><h1>Register</h1>
+        Create a username:
+        <input type="text" name="username" placeholder="username">
+        <br>
+        Create a password:
+        <input type="password" name="password" placeholder="password">
+        <br>
+        Confirm your password:
+        <input type="password" name="cpassword" placeholder="password">
+        <br>
+        Your age is:
+        <input type="number" name="age" placeholder="age">
+        <br>
+        Your current height is: 
+        <input type="number" name="height" placeholder="height">
+        <br>
+        Your current weight is:
+        <input type="number" name="weight" placeholder="weight">
+        <br><br>
+        <input type="submit" name="submit" value="login">
+        <input type="submit" name="submit" value="register">
+      </div>
+    </div>
+  </div>
+
   </center>
 </body>
