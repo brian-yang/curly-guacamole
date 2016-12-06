@@ -8,3 +8,8 @@ brianY -- 2016-12-05 5:52PM
 
 brianY -- 2016-12-05 11:03PM
 - Set up basic flask functionality
+
+amyX -- 2016-12-05 11:35
+- Finished creating home.html, browse.html, and display.html basic templates
+- Got bootstrap and CSS working on said html templates
+- Added static folder to house bootstrap files
