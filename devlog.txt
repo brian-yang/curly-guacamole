@@ -5,3 +5,6 @@ firstL - TIMESTAMP
 brianY -- 2016-12-05 5:52PM
 - Created admin file for creating and dropping database tables
 - Created subfolders and other preliminary files necessary for the project
+
+brianY -- 2016-12-05 11:03PM
+- Set up basic flask functionality
