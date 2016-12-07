@@ -16,6 +16,7 @@ amyX -- 2016-12-05 11:35 PM
 
 jasonC -- 2016-12-06 12:04 PM
 - Removed browse.html
+- Added paths in app.py
 
 brianY -- 2016-12-06 12:31 PM
 - Added auth.py
