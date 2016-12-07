@@ -29,5 +29,9 @@ brianY -- 2016-12-06 12:31 PM
 brianY -- 2016-12-06 10:33 PM
 - Worked on authenticate route in app.py
 
+amyX -- 2016-12-07 12:09 PM
+- Finished login and register forms
+- The routes for login/register have been set to /authenticate in app.py
+
 brianY -- 2016-12-07 12:14 PM
 - Fixed column error in auth.py
