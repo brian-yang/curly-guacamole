@@ -6,7 +6,7 @@ def register(user, password):
     db = sqlite3.connect(f)
     c = db.cursor()
 
-    check_user = "SELECT * FROM user_credentials WHERE user=?"
+    check_user = "SELECT * FROM user_credentials WHERE username=?"
     entry = c.execute(check_user, (user,)).fetchone()
     if entry is None:
         register_user = "INSERT INTO user_credentials (username, password) VALUES (?, ?)"
@@ -26,7 +26,7 @@ def login(user, password):
     db = sqlite3.connect(f)
     c = db.cursor()
 
-    check_user = "SELECT * FROM user_credentials WHERE user=?"
+    check_user = "SELECT * FROM user_credentials WHERE username=?"
     entry = c.execute(check_user, (user,)).fetchone()
 
     c.close()

@@ -28,3 +28,6 @@ brianY -- 2016-12-06 12:31 PM
 
 brianY -- 2016-12-06 10:33 PM
 - Worked on authenticate route in app.py
+
+brianY -- 2016-12-07 12:14 PM
+- Fixed column error in auth.py
