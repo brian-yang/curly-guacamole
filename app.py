@@ -36,11 +36,12 @@ def authenticate():
 
 @app.route('/profile/')
 def profile():
-    if 'user' in session:
-        return render_template('profile.html')
-    else:
-        return redirect(url_for("home"))
-
+    # if 'user' in session:
+    #     return render_template('profile.html')
+    # else:
+    #     return redirect(url_for("home"))
+    return render_template('profile.html')
+    
 @app.route('/display/')
 def display():
     return render_template('display.html')
