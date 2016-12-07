@@ -2,14 +2,17 @@ ENTRY FORMAT:
 firstL - TIMESTAMP
 <CHANGES>
 
-brianY -- 2016-12-05 5:52PM
+brianY -- 2016-12-05 5:52 PM
 - Created admin file for creating and dropping database tables
 - Created subfolders and other preliminary files necessary for the project
 
-brianY -- 2016-12-05 11:03PM
+brianY -- 2016-12-05 11:03 PM
 - Set up basic flask functionality
 
-amyX -- 2016-12-05 11:35
+amyX -- 2016-12-05 11:35 PM
 - Finished creating home.html, browse.html, and display.html basic templates
 - Got bootstrap and CSS working on said html templates
 - Added static folder to house bootstrap files
+
+jasonC -- 2016-12-06 12:04 PM
+- Removed browse.html
