@@ -36,5 +36,11 @@ amyX -- 2016-12-07 12:09 PM
 brianY -- 2016-12-07 12:14 PM
 - Fixed column error in auth.py
 
+shaeqA -- 2016-12-07 12:14 PM
+- Added style to forms and buttons in authenticate.html
+
+amyX -- 2016-12-07 12:31 PM
+- Got API key and ID and imported nutritionix lib
+
 brianY -- 2016-12-07 1:58 PM
 - Fixed register & login
