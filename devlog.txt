@@ -38,3 +38,6 @@ brianY -- 2016-12-07 12:14 PM
 
 shaeqA -- 2016-12-07 12:14 PM
 - Added style to forms and buttons in authenticate.html
+
+amyX -- 2016-12-07 12:31 PM
+- Got API key and ID and imported nutritionix lib
