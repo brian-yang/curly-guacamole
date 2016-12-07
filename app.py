@@ -1,6 +1,7 @@
 from flask import Flask, render_template, session, request, redirect, url_for
 from utils import auth
-
+from nutritionix import Nutritionix
+nix = Nutritionix(app_id="b31ef4ce", api_key="070678e0943ef0af60625a44d7de3bb3")
 app = Flask(__name__)
 
 # ===========================================
