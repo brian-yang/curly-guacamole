@@ -18,6 +18,11 @@ jasonC -- 2016-12-06 12:04 PM
 - Removed browse.html
 - Added paths in app.py
 
+amyX -- 2016-12-06 12:36 PM
+- Added profile and authenticate html files
+- Moved search bar to nav bar instead of on homepage
+- Started adding forms to authenticate
+
 brianY -- 2016-12-06 12:31 PM
 - Added auth.py
 
