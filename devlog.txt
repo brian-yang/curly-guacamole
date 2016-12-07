@@ -19,3 +19,6 @@ jasonC -- 2016-12-06 12:04 PM
 
 brianY -- 2016-12-06 12:31 PM
 - Added auth.py
+
+brianY -- 2016-12-06 10:33 PM
+- Worked on authenticate route in app.py
