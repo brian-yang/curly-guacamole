@@ -54,11 +54,13 @@
         {{ message }}
         <br>
         <form action="/authenticate/" method="post">
-          <input type="text" name="username" placeholder="username">
+          <input class="form-control"type="text" name="username" placeholder="username">
           <br>
-          <input type="password" name="password" placeholder="password">
+          <input class="form-control" type="password" name="password" placeholder="password">
+          <input class="form-control" type="password" name="password" placeholder="password">
+          <br>
           <br><br>
-          <input type="submit" name="submit" value="login">
+          <input class="btn btn-primary" type="submit" name="submit" value="login">
         </form>
       </div>
       <div class="col-sm-6 text-center">
@@ -66,24 +68,24 @@
         <h1>Register</h1>
         <form action="/authenticate/" method="post">
           Create a username:
-          <input type="text" name="username" placeholder="username">
+          <input class="form-control" type="text" name="username" placeholder="username">
           <br>
           Create a password:
-          <input type="password" name="password" placeholder="password">
+          <input class="form-control" type="password" name="password" placeholder="password">
           <br>
           <!-- Confirm your password:
           <input type="password" name="cpassword" placeholder="password">
           <br> -->
           Your age is:
-          <input type="number" name="age" placeholder="age">
+          <input class="form-control" type="number" name="age" placeholder="age">
           <br>
           Your current height is: 
-          <input type="number" name="height" placeholder="height">
+          <input class="form-control" type="number" name="height" placeholder="height">
           <br>
           Your current weight is:
-          <input type="number" name="weight" placeholder="weight">
+          <input class="form-control" type="number" name="weight" placeholder="weight">
           <br><br>
-          <input type="submit" name="register" value="register">
+          <input class="btn btn-primary" type="submit" name="register" value="register">
         </form>
       </div>
     </div>
