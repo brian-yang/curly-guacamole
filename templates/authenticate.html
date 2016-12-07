@@ -51,7 +51,7 @@
       <div class="col-sm-6 text-center">
         {{ error }}
         <h1>Login/Register</h1>
-        {{ message }}
+        {{ login_message }}
         <br>
         <form action="/authenticate/" method="post">
           <input class="form-control"type="text" name="username" placeholder="username">
@@ -60,11 +60,11 @@
           <input class="form-control" type="password" name="password" placeholder="password">
           <br>
           <br><br>
-          <input class="btn btn-primary" type="submit" name="submit" value="login">
+          <input class="btn btn-primary" type="submit" name="login" value="login">
         </form>
       </div>
       <div class="col-sm-6 text-center">
-        {{ message }}
+        {{ register_message }}
         <h1>Register</h1>
         <form action="/authenticate/" method="post">
           Create a username:

@@ -35,3 +35,6 @@ amyX -- 2016-12-07 12:09 PM
 
 brianY -- 2016-12-07 12:14 PM
 - Fixed column error in auth.py
+
+brianY -- 2016-12-07 1:58 PM
+- Fixed register & login

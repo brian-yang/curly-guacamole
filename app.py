@@ -13,19 +13,16 @@ def home():
 
 @app.route("/authenticate/", methods = ["GET", "POST"])
 def authenticate():
-    if 'submit' not in request.form:
-        return render_template("authenticate.html")
-
-    if request.form['submit'] == 'register':
+    if 'register' in request.form.keys():
         if not request.form['username'] or not request.form['password']:
             msg = "Please enter a username and password."
         elif auth.register(request.form['username'], request.form['password']):
             msg = "Successfully registered!"
         else:
             msg = "Failed to register! Username is taken."
-        return render_template("authenticate.html", message = msg)
+        return render_template("authenticate.html", register_message = msg)
 
-    elif request.form['submit'] == 'login':
+    elif 'login' in request.form.keys():
         if not request.form['username'] or not request.form['password']:
             msg = "Please enter a username and password."
         elif auth.login(request.form['username'], request.form['password']):
@@ -33,16 +30,19 @@ def authenticate():
             return redirect(url_for("profile"))
         else:
             msg = "Failed to login. Username and/or password incorrect."
-        return render_template("authenticate.html", message = msg)
+        return render_template("authenticate.html", login_message = msg)
 
+    else:
+        return render_template("authenticate.html")
+
+        
 @app.route('/profile/')
 def profile():
-    # if 'user' in session:
-    #     return render_template('profile.html')
-    # else:
-    #     return redirect(url_for("home"))
-    return render_template('profile.html')
-    
+    if 'user' in session:
+        return render_template('profile.html')
+    else:
+        return redirect(url_for("home"))    
+
 @app.route('/display/')
 def display():
     return render_template('display.html')
@@ -52,4 +52,6 @@ def display():
 # ===========================================
 if __name__ == '__main__':
     app.debug = True
+    app.config.from_object('config')
+    app.secret_key = app.config['SECRET_KEY']
     app.run()
