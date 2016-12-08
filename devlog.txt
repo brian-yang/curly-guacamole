@@ -44,3 +44,9 @@ amyX -- 2016-12-07 12:31 PM
 
 brianY -- 2016-12-07 1:58 PM
 - Fixed register & login
+
+amyX -- 2016-12-07 10:32 PM
+- Wrote display route in app.py 
+- Sent input from search bar in nav bar to display route
+- Imported and successfully pulled data from Nutritionix's API
+- Got API's data onto display.html
