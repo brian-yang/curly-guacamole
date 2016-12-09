@@ -1,5 +1,5 @@
 ENTRY FORMAT:
-firstL - TIMESTAMP
+firstL -- TIMESTAMP
 <CHANGES>
 
 brianY -- 2016-12-05 5:52 PM
@@ -50,3 +50,6 @@ amyX -- 2016-12-07 10:32 PM
 - Sent input from search bar in nav bar to display route
 - Imported and successfully pulled data from Nutritionix's API
 - Got API's data onto display.html
+
+jasonC -- 2016-12-08 12:27 PM
+- Added logout route in app.py
