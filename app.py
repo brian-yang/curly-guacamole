@@ -3,7 +3,13 @@ from utils import auth
 from nutritionix import Nutritionix
 import json
 
-nix = Nutritionix(app_id="b31ef4ce", api_key="070678e0943ef0af60625a44d7de3bb3")
+# apikeys[0] - nutirinoix key - "070678e0943ef0af60625a44d7de3bb3"
+f = open("keys.txt","r") #opens file with name of "test.txt"
+apikeys = []
+for line in f:
+    key = line.strip('\n')
+    apikeys.append(key)
+nix = Nutritionix(app_id="b31ef4ce", api_key=apikeys[0])
 app = Flask(__name__)
 
 # ===========================================
