@@ -48,13 +48,18 @@ def profile():
 
 @app.route('/display/', methods = ["GET", "POST"])
 def display():
+    d = {}
     if 'search' in request.form.keys():
         if not request.form['lookup']:
             return redirect(url_for("home"))
         else:
-            call = nix.search(request.form['lookup'], results="0:1").json()
-            call = call['hits'][0]["_id"]
-            call = nix.item(id=call).json()
+            call = nix.search(request.form['lookup'], results="0:5").json()
+            call = call['hits'][0]
+	    
+            #for index in call:
+	#	id = call[index]["_id"]
+	#	d[index] = nix.item(id).json()	
+            #call = nix.item(id=call).json()
             return render_template('display.html', fooddata = call, foodname=request.form['lookup'])
     else:
         return redirect(url_for("home"))
