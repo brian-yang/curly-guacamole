@@ -48,14 +48,15 @@ def profile():
 
 @app.route('/display/', methods = ["GET", "POST"])
 def display():
-    d = {}
+    d = []
     if 'search' in request.form.keys():
         if not request.form['lookup']:
             return redirect(url_for("home"))
         else:
             call = nix.search(request.form['lookup'], results="0:5").json()
-            call = call['hits'][0]
-	    
+            call = call['hits']
+	#    for i in call:
+	#	d[i] = call[i]		    
             #for index in call:
 	#	id = call[index]["_id"]
 	#	d[index] = nix.item(id).json()	
