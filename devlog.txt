@@ -59,3 +59,7 @@ shaeqA -- 2016-12-09 12:34 PM
 
 brianY -- 2016-12-09 12:35 PM
 - Worked on add
+
+amyX -- 2016-12-11 8:32 PM
+- Changed from Nutritionix to USDA api to get nutritional information because Nutritionix was done and it's less stable
+- Got new API key
