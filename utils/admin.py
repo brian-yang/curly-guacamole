@@ -13,7 +13,7 @@ def create_tables():
     create_calorie_tracker = "CREATE TABLE IF NOT EXISTS calorie_tracker (username NOT NULL, date STRING NOT NULL, meals STRING, calorie_count REAL);"
     c.execute(create_calorie_tracker)
 
-    create_user_diagnostics = "CREATE TABLE IF NOT EXISTS user_diagnostics (username STRING NOT NULL, gender STRING NOT NULL, height INTEGER NOT NULL, weight INTEGER NOT NULL);"
+    create_user_diagnostics = "CREATE TABLE IF NOT EXISTS user_diagnostics (username STRING NOT NULL, gender STRING NOT NULL, age STRING NOT NULL, height INTEGER NOT NULL, weight INTEGER NOT NULL);"
     c.execute(create_user_diagnostics)
 
 def clear_tables():
