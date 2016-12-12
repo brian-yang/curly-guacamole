@@ -3,7 +3,13 @@ from utils import auth
 from nutritionix import Nutritionix
 import json, urllib2
 
-nix = Nutritionix(app_id="b31ef4ce", api_key="070678e0943ef0af60625a44d7de3bb3")
+# apikeys[0] - nutirinoix key - "070678e0943ef0af60625a44d7de3bb3"
+f = open("keys.txt","r") #opens file with name of "test.txt"
+apikeys = []
+for line in f:
+    key = line.strip('\n')
+    apikeys.append(key)
+nix = Nutritionix(app_id="b31ef4ce", api_key=apikeys[0])
 app = Flask(__name__)
 
 #http://api.nal.usda.gov/ndb/search/?format=json&q=butter&sort=n&max=25&offset=0&api_key=DEMO_KEY
@@ -83,6 +89,12 @@ def display():
             return render_template('display.html', fooddata = jsonf, foodname=request.form['lookup'])
     else:
         return redirect(url_for("home"))
+
+@app.route('/logout/')
+def logout():
+    if 'user' in session:
+        session.pop('user')
+    return redirect(url_for('login'))
 
 # ===========================================
 # RUN
