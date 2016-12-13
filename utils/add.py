@@ -7,15 +7,15 @@ def add_meal(username, meal_name, calories):
     c = db.cursor()
 
     date = get_date()
-    check_calories_today = "SELECT meals FROM calorie_count WHERE username=? AND date=?"
+    check_calories_today = "SELECT meals FROM calorie_tracker WHERE username=? AND date=?"
     rows = c.execute(check_calorie_today, (username, date))
 
     if not rows:
         # add story to the next row
-        add_calories = "INSERT INTO calorie_count (username, date, meals, calories) VALUES(?, ?, ?, ?)"
+        add_calories = "INSERT INTO calorie_tracker (username, date, meals, calories) VALUES(?, ?, ?, ?)"
         c.execute(add_calories, (username, get_date(), meal_name, calories));
     else:
-        add_calories = "UPDATE calorie_count"
+        add_calories = "UPDATE calorie_tracker"
         c.execute(add_calories, (username, get_date(), rows[0] + "|" + meal_name, calories))
 
     c.close()
