@@ -63,3 +63,8 @@ brianY -- 2016-12-09 12:35 PM
 amyX -- 2016-12-11 8:32 PM
 - Changed from Nutritionix to USDA api to get nutritional information because Nutritionix was done and it's less stable
 - Got new API key
+
+jasonC -- 2016-12-12 11:51 PM
+- Finished get_user_data() and get_calories() in get.py
+- Experimented with urllib2 in an attempt to get the BMI API working, to no avail
+- Minor edits in add.py to reflect correct proper table names/values in users.db
