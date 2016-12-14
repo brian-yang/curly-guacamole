@@ -1,5 +1,11 @@
-import urllib, urllib2
-import sqlite3
+import urllib, urllib2, sqlite3, unirest
+
+f = open('keys.txt','r')
+apikeys = []
+for line in f:
+    key = line.strip('\n')
+    apikeys.append(key)
+api_key = apikeys[1]
 
 def get_info(username, query):
     db = sqlite3.connect('data/users.db')
@@ -17,30 +23,18 @@ def get_user_data(username):
     info = get_info(username, query)
     return [info[1], info[2], info[3], info[4]]
 
-# def get_bmi(bmi_info):
-#     method = "POST"
-#     handler = urllib2.HTTPHandler()
-#     opener = urllib2.build_opener(handler)
-    
-#     data = urllib.urlencode(bmi_info)
-    
-#     request = urllib2.Request("https://bmi.p.mashape.com/", data)
-#     request.add_header("X-Mashape-Key", "jnUlXZCfZwmshKWvP2b4Sb1bEFwpp1GNDRcjsnsXHRQvWIdpkF")
-#     request.add_header("Content-Type", "application/json")
-#     request.add_header("Accept", "application/json")
-#     request.get_method = lambda: method
-    
-#     try:
-#         connection = opener.open(request)
-#     except urllib2.HTTPError, e:
-#         connection = e
-
-#     if connection.code == 200:
-#         result = connection.read()
-#         print result
-#     else:
-#         print connection.code
-        
-
-# bmi = {"weight": {"value":"85.00","unit":"kg"},"height":{"value":"170.00","unit":"cm"},"sex":"m","age":"24"}
-# get_bmi(bmi)
+def get_bmi(username):
+    url = "https://bmi.p.mashape.com/"
+    headers = {
+        "X-Mashape-Key": api_key,
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+    }
+    info = get_user_data(username)
+    gender = info[0]
+    age = info[1]
+    height = info[2] * 2.54 #in to cm
+    weight = info[3] * 0.45 #lbs to kg
+    params = "{\"weight\":{\"value\":\"%s\",\"unit\":\"kg\"},\"height\":{\"value\":\"%s\",\"unit\":\"cm\"},\"sex\":\"%s\",\"age\":\"%s\"}"%(weight, height, gender, age)
+    response = unirest.post(url, headers = headers, params = params)
+    return response.body

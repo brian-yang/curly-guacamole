@@ -30,11 +30,11 @@ def authenticate():
         return render_template('profile.html', username = u)
 
     if 'register' in request.form.keys():
-        if not request.form['username'] or not request.form['password']:
-            msg = "Please enter a username and password."
+        if not request.form['username'] or not request.form['password'] or not request.form['age'] or not request.form['height'] or not request.form['weight']:
+            msg = "Please enter in all the fields."
         elif auth.register(request.form['username'], request.form['password']):
             u = request.form['username']
-            gender = 'm'
+            gender = 'm' # NEED TO HAVE FIELD
             age = request.form['age']
             height = request.form['height']
             weight = request.form['weight']
@@ -80,14 +80,14 @@ def display():
             return redirect(url_for("home"))
         else:
             # First API
-            url = "http://api.nal.usda.gov/ndb/search/?format=json&q=%s&sort=n&max=%d&offset=0&api_key=%s" % (request.form["lookup"], 5, api_key)
+            url = "http://api.nal.usda.gov/ndb/search/?format=json&q=%s&sort=n&max=%d&offset=0&api_key=%s" % (request.form["lookup"], 1, api_key)
 
             jsonf = urllib2.urlopen(url).read()
             jsonf = json.loads(jsonf)
             jsonf = jsonf["list"]["item"]
             #print jsonf
             #list of dictionaries
-
+ 
             for index in jsonf:
                 # Second API
                 nutri = "http://api.nal.usda.gov/ndb/nutrients/?format=json&api_key=%s&nutrients=205&nutrients=204&nutrients=208&nutrients=269&nutrients=291&nutrients=301&nutrients=303&nutrients=431&nutrients=304&nutrients=305&nutrients=306&nutrients=307&nutrients=401&nutrients=415&nutrients=418&nutrients=320&ndbno=%s"%(api_key,index["ndbno"])
@@ -111,15 +111,16 @@ def display():
                         dash = y.find("--")
                         dash += 2
                         x[nutrient] = "0" + x[nutrient][2:]
-
+ 
             return render_template('display.html', fooddata = d, foodname=request.form['lookup'], username=u)
     else:
         return redirect(url_for("home"))
 
-@app.route('/calorie/')
+@app.route('/calorie/', methods = ["POST"])
 def calorie():
     if 'user' in session:
-        return render_template('calorie.html')
+        print request.form["food"]
+        return render_template('calorie.html', calorie = request.form["food"])
     else:
         return redirect(url_for('home'))
 
