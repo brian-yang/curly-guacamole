@@ -32,3 +32,8 @@ def show_nutrients(fooddata):
                 results[cur_result] = parse_sections(section)
 
     return results    
+
+def show_bmi(data):
+    results = data['bmi']
+    results.pop('prime', None)
+    return results
