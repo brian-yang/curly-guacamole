@@ -74,33 +74,9 @@ def display():
                 nutri = "http://api.nal.usda.gov/ndb/nutrients/?format=json&api_key=%s&nutrients=205&nutrients=204&nutrients=208&nutrients=269&nutrients=291&nutrients=301&nutrients=303&nutrients=431&nutrients=304&nutrients=305&nutrients=306&nutrients=307&nutrients=401&nutrients=415&nutrients=418&nutrients=320&ndbno=%s"%(k,index["ndbno"])
                 nutrif = json.loads(urllib2.urlopen(nutri).read())
                 d[index["name"]] = nutrif["report"]["foods"][0]["nutrients"]
+                        
             
-            i = 0
-            for ids in d:
-                x = d[ids]
-                y = {}
-                for index in x:
-                    #y[index["nutrient"]] = index["value"] + index["unit"]
-                    print index
-                #print y
-                #print L
-                #print ids, d[ids]
-                #print d[ids][i]
-                #print x
-                # x = dict()
-                # #print d[ids]
-                # key = d[ids][i]["nutrient"]
-                # #print key
-                # splitkey = key.split(",")
-                # key = splitkey[i]
-                # if (d[ids][i]["value"] == "--"):
-                #     x[key] = "0" + d[ids][i]["unit"]
-                # else:
-                #     x[key] = d[ids][i]["value"] + d[ids][i]["unit"]
-                # i += 1
-                # ar.append(x)
-            
-            return render_template('display.html', fooddata = ar, foodname=request.form['lookup'])
+            return render_template('display.html', fooddata = d, foodname=request.form['lookup'])
     else:
         return redirect(url_for("home"))
 
