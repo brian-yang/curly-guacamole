@@ -77,4 +77,8 @@ amyX -- 2016-12-13 8:48 PM
 - Used id from USDA search API to obtain nutritional info from USDA Nutrition API
 - Stored nutrients' data in a dictionary
 
+shaeqA -- 2016-12-13 10:21 PM
+- Added functionality to API 
+- display data in a meaningful way (jinja)
+
 brianY -- 2016-12-13 10:34 PM
