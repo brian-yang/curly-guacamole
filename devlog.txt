@@ -86,3 +86,8 @@ brianY -- 2016-12-13 10:34 PM
 
 brianY -- 2016-12-13 12:31 AM
 - Worked on parsing nutrition data
+
+jasonC -- 2016-12-14 10:43 AM
+- Edited function in app.py to display user information on profile page
+- Added user information variables in profile.html
+- Made minor edits to forms in authenticate.html
