@@ -52,10 +52,27 @@
 	    <h3 class="panel-title">{{foodname}}</h3>
 	  </div>
 	  <div class="panel-body">
-	<!--     {% for key in fooddata %}
-	    	{{key}}: {{fooddata[key]}} <br><br>
-	    {% endfor %} -->
-	    {{fooddata}}
+	    {% for fooddata_item in fooddata.items() %}
+	    	{% for key in fooddata_item %}
+	    	{% if loop.index is divisibleby 2 %}
+                {%for x in key %}
+                	{% for a, b in x.items() %}
+                	{% if loop.index is equalto 1 %}
+                	{% else %}
+                		{{a}} : {{b}}<br>
+                	{% endif %}	
+                		{% endfor %}
+                		<br>
+                {% endfor %}
+                <br>
+	    	{% else %}
+	    	-------------------------------------------------<br>
+	    		{{key}} <br>
+            ------------------------------------------------- <br><br>
+	    		{% endif %}
+	    		{% endfor %}
+	    {% endfor %}
+	   <!--  {{fooddata}} -->
 	  </div>
 	</div>
 
