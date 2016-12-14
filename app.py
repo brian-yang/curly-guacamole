@@ -19,6 +19,8 @@ app = Flask(__name__)
 def home():
     if 'user' in session:
         u = session['user']
+    else:
+        u = ""
     return render_template('home.html', username = u)
 
 @app.route("/authenticate/", methods = ["GET", "POST"])
@@ -125,7 +127,7 @@ def calorie():
 def logout():
     if 'user' in session:
         session.pop('user')
-    return redirect(url_for('login'))
+    return redirect(url_for('home'))
 
 # ===========================================
 # RUN
