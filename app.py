@@ -100,7 +100,6 @@ def display():
                         dash += 2
                         x[nutrient] = "0" + x[nutrient][2:]
 
-            
             return render_template('display.html', fooddata = d, foodname=request.form['lookup'])
     else:
         return redirect(url_for("home"))

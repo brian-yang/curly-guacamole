@@ -97,3 +97,9 @@ brianY -- 2016-12-14 2:05 PM
 
 amyX -- 2016-12-14 2:34 PM
 - Parsed name string and got rid of UPC ending
+
+amyX -- 2016-12-14 2:43 PM
+- Got rid of dashes. There's no more --. Instead -- is now 0
+
+amyX -- 2016-12-14 2:53 PM
+- Added add button so users can pick the food item and add it to their calorie count
