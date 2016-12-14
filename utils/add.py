@@ -1,30 +1,32 @@
 import sqlite3
 from time import strftime
 
+def get_date():
+    return strftime("%Y-%m-%d")
+
 def add_meal(username, meal_name, calories):
     f = "data/users.db"
     db = sqlite3.connect(f)
     c = db.cursor()
 
     date = get_date()
-    check_calories_today = "SELECT meals FROM calorie_tracker WHERE username=? AND date=?"
-    rows = c.execute(check_calorie_today, (username, date))
+    check_calories_today = "SELECT meals, calorie_count FROM calorie_tracker WHERE username=? AND date=?"
+    rows = c.execute(check_calories_today, (username, date)).fetchone()
 
     if not rows:
         # add story to the next row
-        add_calories = "INSERT INTO calorie_tracker (username, date, meals, calories) VALUES(?, ?, ?, ?)"
+        add_calories = "INSERT INTO calorie_tracker (username, date, meals, calorie_count) VALUES(?, ?, ?, ?)"
         c.execute(add_calories, (username, get_date(), meal_name, calories));
     else:
-        add_calories = "UPDATE calorie_tracker"
-        c.execute(add_calories, (username, get_date(), rows[0] + "|" + meal_name, calories))
+        add_calories = "UPDATE calorie_tracker SET meals=?, calorie_count=? WHERE username=? AND date=?"
+        print rows[0]
+        print meal_name
+        c.execute(add_calories, (str(rows[0]) + "|" + meal_name, float(rows[1]) + calories, username, date))
 
     c.close()
-    
+
     db.commit()
     db.close()
-    
-def get_date():
-    return strftime("%Y-%m-%d")
 
 def add_profile(username, gender, age, height, weight):
     f = "data/users.db"
@@ -36,6 +38,6 @@ def add_profile(username, gender, age, height, weight):
     c.execute(add_calories, (username, gender, age, height, weight));
 
     c.close()
-    
+
     db.commit()
-    db.close()    
+    db.close()

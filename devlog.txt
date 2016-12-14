@@ -46,7 +46,7 @@ brianY -- 2016-12-07 1:58 PM
 - Fixed register & login
 
 amyX -- 2016-12-07 10:32 PM
-- Wrote display route in app.py 
+- Wrote display route in app.py
 - Sent input from search bar in nav bar to display route
 - Imported and successfully pulled data from Nutritionix's API
 - Got API's data onto display.html
@@ -64,12 +64,17 @@ amyX -- 2016-12-11 8:32 PM
 - Changed from Nutritionix to USDA api to get nutritional information because Nutritionix was done and it's less stable
 - Got new API key
 
+brianY -- 2016-12-13 12:35 PM
+- Wrote function for adding meals to the database
+
 jasonC -- 2016-12-12 11:51 PM
 - Finished get_user_data() and get_calories() in get.py
 - Experimented with urllib2 in an attempt to get the BMI API working, to no avail
 - Minor edits in add.py to reflect correct proper table names/values in users.db
 
 amyX -- 2016-12-13 8:48 PM
-- Successfully extracted all necessary data from the USDA search api. 
+- Successfully extracted all necessary data from the USDA search api.
 - Used id from USDA search API to obtain nutritional info from USDA Nutrition API
 - Stored nutrients' data in a dictionary
+
+brianY -- 2016-12-13 10:34 PM
