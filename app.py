@@ -80,10 +80,26 @@ def display():
                 # Second API
                 nutri = "http://api.nal.usda.gov/ndb/nutrients/?format=json&api_key=%s&nutrients=205&nutrients=204&nutrients=208&nutrients=269&nutrients=291&nutrients=301&nutrients=303&nutrients=431&nutrients=304&nutrients=305&nutrients=306&nutrients=307&nutrients=401&nutrients=415&nutrients=418&nutrients=320&ndbno=%s"%(api_key,index["ndbno"])
                 nutrif = json.loads(urllib2.urlopen(nutri).read())
-                d[index["name"]] = nutrif["report"]["foods"][0]["nutrients"]
+                z = index["name"]
+                holder = z.find("UPC")
+                if holder != -1:
+                    holder -= 2
+                z = z[0:holder]
+                d[z] = nutrif["report"]["foods"][0]["nutrients"]
 
             # parse.get_list_of_food_nutrients(d.items())
             d = parse.show_nutrients(d.items())
+
+            #getting rid of -- and changing them to zeroes
+            for name in d:
+                x = d[name]
+                for nutrient in x:
+                    y = x[nutrient]
+                    if y.find("--") != -1:
+                        dash = y.find("--")
+                        dash += 2
+                        x[nutrient] = "0" + x[nutrient][2:]
+
             
             return render_template('display.html', fooddata = d, foodname=request.form['lookup'])
     else:
