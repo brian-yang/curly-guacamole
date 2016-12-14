@@ -94,3 +94,6 @@ jasonC -- 2016-12-14 10:43 AM
 
 brianY -- 2016-12-14 2:05 PM
 - Work on parsing nutrition data
+
+amyX -- 2016-12-14 2:34 PM
+- Parsed name string and got rid of UPC ending
