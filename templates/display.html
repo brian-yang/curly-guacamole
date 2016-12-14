@@ -52,23 +52,14 @@
 	    <h3 class="panel-title">{{foodname}}</h3>
 	  </div>
 	  <div class="panel-body">
-	    {% for search_result in fooddata.items() %}
-	    	{% for key in search_result %}
-	    	{% if loop.index is divisibleby 2 %}
-                  {% for table in key %}
-                	{% if table["nutrient"] == "Energy" %}
-                		{{table["nutrient"]}} : {{table["value"]}}{{table["unit"]}}<br>
-                        {% endif %}
-	          {{table["nutrient"]}}<br>
-                  {% endfor %}
-	    	{% else %}
+	    {% for search_result in fooddata.keys() %}
 	    	-------------------------------------------------<br>
-	    		{{key}} <br>
+	    		{{search_result}} <br>
             ------------------------------------------------- <br>
-		{% endif %}
-	    	{% endfor %}
+	    {% for entry in fooddata[search_result].keys() %}
+	        {{entry}}: {{fooddata[search_result][entry]}} <br>
 	    {% endfor %}
-	   <!--  {{fooddata}} -->
+	    {% endfor %}
 	  </div>
 	</div>
 

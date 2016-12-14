@@ -7,12 +7,9 @@ apikeys = []
 for line in f:
     key = line.strip('\n')
     apikeys.append(key)
-
-app = Flask(__name__)
-
-#http://api.nal.usda.gov/ndb/search/?format=json&q=butter&sort=n&max=25&offset=0&api_key=DEMO_KEY
-
 api_key = apikeys[0]
+    
+app = Flask(__name__)
 
 # ===========================================
 # ROUTES
@@ -70,6 +67,7 @@ def display():
         if not request.form['lookup']:
             return redirect(url_for("home"))
         else:
+            # First API
             url = "http://api.nal.usda.gov/ndb/search/?format=json&q=%s&sort=n&max=%d&offset=0&api_key=%s" % (request.form["lookup"], 5, api_key)
 
             jsonf = urllib2.urlopen(url).read()
@@ -79,12 +77,14 @@ def display():
             #list of dictionaries
 
             for index in jsonf:
+                # Second API
                 nutri = "http://api.nal.usda.gov/ndb/nutrients/?format=json&api_key=%s&nutrients=205&nutrients=204&nutrients=208&nutrients=269&nutrients=291&nutrients=301&nutrients=303&nutrients=431&nutrients=304&nutrients=305&nutrients=306&nutrients=307&nutrients=401&nutrients=415&nutrients=418&nutrients=320&ndbno=%s"%(api_key,index["ndbno"])
                 nutrif = json.loads(urllib2.urlopen(nutri).read())
                 d[index["name"]] = nutrif["report"]["foods"][0]["nutrients"]
 
-            parse.get_list_of_food_nutrients(d.items())
-
+            # parse.get_list_of_food_nutrients(d.items())
+            d = parse.show_nutrients(d.items())
+            
             return render_template('display.html', fooddata = d, foodname=request.form['lookup'])
     else:
         return redirect(url_for("home"))
