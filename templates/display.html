@@ -44,7 +44,7 @@
 
 
 	<h2><center><b>{{foodname}}</b><center></h2>
-	
+
 	<!-- page header -->
 
 	<div class="panel panel-default">
@@ -52,25 +52,21 @@
 	    <h3 class="panel-title">{{foodname}}</h3>
 	  </div>
 	  <div class="panel-body">
-	    {% for fooddata_item in fooddata.items() %}
-	    	{% for key in fooddata_item %}
+	    {% for search_result in fooddata.items() %}
+	    	{% for key in search_result %}
 	    	{% if loop.index is divisibleby 2 %}
-                {%for x in key %}
-                	{% for a, b in x.items() %}
-                	{% if loop.index is equalto 1 %}
-                	{% else %}
-                		{{a}} : {{b}}<br>
-                	{% endif %}	
-                		{% endfor %}
-                		<br>
-                {% endfor %}
-                <br>
+                  {% for table in key %}
+                	{% if table["nutrient"] == "Energy" %}
+                		{{table["nutrient"]}} : {{table["value"]}}{{table["unit"]}}<br>
+                        {% endif %}
+	          {{table["nutrient"]}}<br>
+                  {% endfor %}
 	    	{% else %}
 	    	-------------------------------------------------<br>
 	    		{{key}} <br>
-            ------------------------------------------------- <br><br>
-	    		{% endif %}
-	    		{% endfor %}
+            ------------------------------------------------- <br>
+		{% endif %}
+	    	{% endfor %}
 	    {% endfor %}
 	   <!--  {{fooddata}} -->
 	  </div>

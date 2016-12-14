@@ -82,3 +82,7 @@ shaeqA -- 2016-12-13 10:21 PM
 - display data in a meaningful way (jinja)
 
 brianY -- 2016-12-13 10:34 PM
+- Finished implementing functions in add.py
+
+brianY -- 2016-12-13 12:31 AM
+- Worked on parsing nutrition data

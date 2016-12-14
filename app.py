@@ -1,18 +1,18 @@
 from flask import Flask, render_template, session, request, redirect, url_for
-from utils import auth
+from utils import auth, add, get, parse
 import json, urllib2
 
-# apikeys[0] - nutirinoix key - "070678e0943ef0af60625a44d7de3bb3"
-f = open("keys.txt","r") #opens file with name of "test.txt"
+f = open("keys.txt","r") # opens file with name of "test.txt"
 apikeys = []
 for line in f:
     key = line.strip('\n')
     apikeys.append(key)
+
 app = Flask(__name__)
 
 #http://api.nal.usda.gov/ndb/search/?format=json&q=butter&sort=n&max=25&offset=0&api_key=DEMO_KEY
 
-k = apikeys[0]
+api_key = apikeys[0]
 
 # ===========================================
 # ROUTES
@@ -46,13 +46,13 @@ def authenticate():
     else:
         return render_template("authenticate.html")
 
-        
+
 @app.route('/profile/')
 def profile():
     if 'user' in session:
         return render_template('profile.html')
     else:
-        return redirect(url_for("home"))    
+        return redirect(url_for("home"))
 
 @app.route('/display/', methods = ["GET", "POST"])
 def display():
@@ -62,20 +62,21 @@ def display():
         if not request.form['lookup']:
             return redirect(url_for("home"))
         else:
-            url = "http://api.nal.usda.gov/ndb/search/?format=json&q=%s&sort=n&max=%d&offset=0&api_key=%s"%(request.form["lookup"], 5, k)
-            
+            url = "http://api.nal.usda.gov/ndb/search/?format=json&q=%s&sort=n&max=%d&offset=0&api_key=%s" % (request.form["lookup"], 5, api_key)
+
             jsonf = urllib2.urlopen(url).read()
             jsonf = json.loads(jsonf)
             jsonf = jsonf["list"]["item"]
-            #print jsonf 
+            #print jsonf
             #list of dictionaries
 
             for index in jsonf:
-                nutri = "http://api.nal.usda.gov/ndb/nutrients/?format=json&api_key=%s&nutrients=205&nutrients=204&nutrients=208&nutrients=269&nutrients=291&nutrients=301&nutrients=303&nutrients=431&nutrients=304&nutrients=305&nutrients=306&nutrients=307&nutrients=401&nutrients=415&nutrients=418&nutrients=320&ndbno=%s"%(k,index["ndbno"])
+                nutri = "http://api.nal.usda.gov/ndb/nutrients/?format=json&api_key=%s&nutrients=205&nutrients=204&nutrients=208&nutrients=269&nutrients=291&nutrients=301&nutrients=303&nutrients=431&nutrients=304&nutrients=305&nutrients=306&nutrients=307&nutrients=401&nutrients=415&nutrients=418&nutrients=320&ndbno=%s"%(api_key,index["ndbno"])
                 nutrif = json.loads(urllib2.urlopen(nutri).read())
                 d[index["name"]] = nutrif["report"]["foods"][0]["nutrients"]
-                        
-            
+
+            parse.get_list_of_food_nutrients(d.items())
+
             return render_template('display.html', fooddata = d, foodname=request.form['lookup'])
     else:
         return redirect(url_for("home"))
