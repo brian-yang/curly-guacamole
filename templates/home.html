@@ -28,7 +28,7 @@
 	        <li class="active"><a href="/">Home<span class="sr-only">(current)</span></a></li>
 	        <!--<li><a href="/browse">Browse</a></li>-->
 	      </ul>
-	      <form class="navbar-form navbar-right" action="/display/" method="post">
+	      <form class="navbar-form navbar-left" action="/display/" method="post">
 	             <div class="form-group">
 	               <input type="text" class="form-control" name="lookup" placeholder="Search">
 	             </div>
@@ -36,7 +36,12 @@
 	             <input class="btn btn-primary" type="submit" name="search" value="search">
 	      </form>
 	      <ul class="nav navbar-nav navbar-right">
-	        <li><a href="/authenticate">Login</a></li>
+	      	{% if session.user %}
+	      	  	<p class="navbar-text">Signed in as <a href="/profile" class="navbar-link">{{username}}</a></p>
+	      	  	<li><a href="/logout">Logout</a></li>
+	      	{% else %}
+	      	  	<li><a href="/authenticate">Login</a></li>
+	      	{% endif %}
 	      </ul>
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->

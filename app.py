@@ -17,10 +17,16 @@ app = Flask(__name__)
 @app.route('/')
 @app.route('/home/')
 def home():
-    return render_template('home.html')
+    if 'user' in session:
+        u = session['user']
+    return render_template('home.html', username = u)
 
 @app.route("/authenticate/", methods = ["GET", "POST"])
 def authenticate():
+    if 'user' in session:
+        u = session['user']
+        return render_template('profile.html', username = u)
+
     if 'register' in request.form.keys():
         if not request.form['username'] or not request.form['password']:
             msg = "Please enter a username and password."
@@ -61,6 +67,10 @@ def profile():
 
 @app.route('/display/', methods = ["GET", "POST"])
 def display():
+    if 'user' in session:
+        u = session['user']
+    else:
+        u = ""
     d = {}
     ar = []
     if 'search' in request.form.keys():
@@ -100,7 +110,7 @@ def display():
                         dash += 2
                         x[nutrient] = "0" + x[nutrient][2:]
 
-            return render_template('display.html', fooddata = d, foodname=request.form['lookup'])
+            return render_template('display.html', fooddata = d, foodname=request.form['lookup'], username=u)
     else:
         return redirect(url_for("home"))
 

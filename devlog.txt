@@ -103,3 +103,7 @@ amyX -- 2016-12-14 2:43 PM
 
 amyX -- 2016-12-14 2:53 PM
 - Added add button so users can pick the food item and add it to their calorie count
+
+amyX -- 2016-12-14 3:33 PM
+- Changed login, logout code. If logged in, logout button and "signed as as <user>" will display
+- Updated app.py's routes to reflect search bar placement update
