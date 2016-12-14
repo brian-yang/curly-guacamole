@@ -107,3 +107,6 @@ amyX -- 2016-12-14 2:53 PM
 amyX -- 2016-12-14 3:33 PM
 - Changed login, logout code. If logged in, logout button and "signed as as <user>" will display
 - Updated app.py's routes to reflect search bar placement update
+
+amyX -- 2016-12-14 4:43 PM
+- Added gender option to register form
