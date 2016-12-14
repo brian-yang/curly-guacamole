@@ -28,6 +28,12 @@ def authenticate():
         if not request.form['username'] or not request.form['password']:
             msg = "Please enter a username and password."
         elif auth.register(request.form['username'], request.form['password']):
+            u = request.form['username']
+            gender = 'm'
+            age = request.form['age']
+            height = request.form['height']
+            weight = request.form['weight']
+            add.add_profile(u, gender, age, height, weight)
             msg = "Successfully registered!"
         else:
             msg = "Failed to register! Username is taken."
@@ -50,7 +56,9 @@ def authenticate():
 @app.route('/profile/')
 def profile():
     if 'user' in session:
-        return render_template('profile.html')
+        u = session['user']
+        info = get.get_user_data(u)
+        return render_template('profile.html', username = u, gender = info[0], age = info[1], height = info[2], weight = info[3])
     else:
         return redirect(url_for("home"))
 
@@ -80,6 +88,13 @@ def display():
             return render_template('display.html', fooddata = d, foodname=request.form['lookup'])
     else:
         return redirect(url_for("home"))
+
+@app.route('/calorie/')
+def calorie():
+    if 'user' in session:
+        return render_template('calorie.html')
+    else:
+        return redirect(url_for('home'))
 
 @app.route('/logout/')
 def logout():
