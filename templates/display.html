@@ -75,7 +75,9 @@
 		{% for entry in fooddata[search_result].keys() %}
 	    	<div class="panel-body">{{entry}}: {{fooddata[search_result][entry]}}</div>
 	    {% endfor %}
-	    <a class="btn btn-primary btn-lg" href="/calorie" role="button">Add</a>
+	    	{% if session.user %}
+	    		<a class="btn btn-primary btn-lg" href="/calorie" role="button">Add</a>
+	    	{% endif %}
 	    </div>
 	{% endfor %}
 
