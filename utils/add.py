@@ -37,3 +37,16 @@ def add_profile(username, gender, age, height, weight):
 
     db.commit()
     db.close()
+
+def update_profile(username, age, height, weight):
+    f = "data/users.db"
+    db = sqlite3.connect(f)
+    c = db.cursor()
+
+    update_profile = "UPDATE user_diagnostics SET age=?, height=?, weight=? WHERE username=?"
+    c.execute(update_profile, (age, height, weight, username));
+
+    c.close()
+
+    db.commit()
+    db.close()

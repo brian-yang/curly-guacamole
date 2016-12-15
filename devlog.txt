@@ -148,3 +148,6 @@ brianY - 2016-12-14 9:43 PM
 
 brianY - 2016-12-14 10:39 PM
 - Worked on README
+
+brianY - 2016-12-14 11:02 PM
+- Wrote function to update user information
