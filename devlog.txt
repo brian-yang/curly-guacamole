@@ -132,3 +132,6 @@ brianY -- 2016-12-14 9:02 PM
 - Fixed issues with adding meals to the calorie_tracker database
 - Fixed issues with searching with spaces
 - Added to README
+
+amyX -- 2016-12-14 9:21 PM
+- Added profile route to base.html in navbar. only accessible if logged in
