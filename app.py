@@ -143,9 +143,9 @@ def calorie():
 @app.route('/update/', methods = ["GET", "POST"])
 def update():
     #some function to update the thing
-    msg = "information updated"
+    #msg = "information updated"
     return render_template('profile.html', update = msg)
-    
+
 @app.route('/logout/')
 def logout():
     if 'user' in session:

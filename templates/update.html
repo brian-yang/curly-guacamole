@@ -10,12 +10,7 @@
   <body>
     {% extends "base.html" %}
     {% block content %}
-    {% if update %}
-        <div class="alert alert-success" role="alert">
-          <span class="sr-only">Update:</span>
-            {{ update }}
-        </div>
-    {% endif %}
+   
     <ul class="nav nav-tabs">
       <li role="presentation"><a href="/profile">Profile</a></li>
       <li role="presentation"><a href="/calorie">Calorie Tracker</a></li>
