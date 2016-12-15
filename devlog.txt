@@ -146,6 +146,9 @@ amyX - 2016-12-14 9:39 PM
 brianY - 2016-12-14 9:43 PM
 - Made users enter in reasonable inputs when they register
 
+jasonC - 2016-12-14 10:19 PM
+- Displayed BMI information on the user's profile page
+
 brianY - 2016-12-14 10:39 PM
 - Worked on README
 
