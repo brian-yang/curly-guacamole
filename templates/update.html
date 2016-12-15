@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Guacamole</title>
+    <link rel="stylesheet" media="screen" href="../static/bootstrap.min.css">
+  </head>
+
+  <body>
+    {% extends "base.html" %}
+    {% block content %}
+    <ul class="nav nav-tabs">
+      <li role="presentation"><a href="/profile">Profile</a></li>
+      <li role="presentation"><a href="/calorie">Calorie Tracker</a></li>
+      <li role="presentation" class="active"><a href="/update">Update Information</a></li>
+    </ul>
+    <form action="/update/" method="post">
+      <h5>Update Age:</h5><input class="form-control" type="number" name="age" placeholder="Age">
+      <h5>Update Height:</h5><input class="form-control" type="number" name="height" placeholder="Height">
+      <h5>Update Weight:</h5><input class="form-control" type="number" name="weight" placeholder="Weight">
+    </form>
+  </body>
+</html>
