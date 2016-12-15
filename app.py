@@ -65,7 +65,12 @@ def profile():
     if 'user' in session:
         u = session['user']
         info = get.get_user_data(u)
-        return render_template('profile.html', username = u, gender = info[0], age = info[1], height = info[2], weight = info[3])
+        bmi = parse.show_bmi(get.get_bmi(u))
+        if info[0] == 'm':
+            info[0] = 'Male'
+        else:
+            info[0] = 'Female'
+        return render_template('profile.html', username = u, gender = info[0], age = info[1], height = info[2], weight = info[3], value = bmi['value'], status = bmi['status'], risks = bmi['risk'])
     else:
         return redirect(url_for("home"))
 

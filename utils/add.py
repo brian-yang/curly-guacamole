@@ -14,7 +14,6 @@ def add_meal(username, meal_name, calories):
     rows = c.execute(check_calories_today, (username, date)).fetchone()
 
     if not rows:
-        # add story to the next row
         add_calories = "INSERT INTO calorie_tracker (username, date, meals, calorie_count) VALUES(?, ?, ?, ?)"
         c.execute(add_calories, (username, get_date(), meal_name, calories));
     else:
@@ -31,7 +30,6 @@ def add_profile(username, gender, age, height, weight):
     db = sqlite3.connect(f)
     c = db.cursor()
 
-    # add story to the next row
     add_calories = "INSERT INTO user_diagnostics (username, gender, age, height, weight) VALUES(?, ?, ?, ?, ?)"
     c.execute(add_calories, (username, gender, age, height, weight));
 
