@@ -161,3 +161,6 @@ brianY - 2016-12-14 11:02 PM
 amyX - 2016-12-14 11:08 PM
 - Added update.html
 - Created update route in app.py
+
+amyX - 2016-12-14 11:24 PM
+- Completed all front end requirements for updating user info
