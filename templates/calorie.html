@@ -10,6 +10,11 @@
   <body>
     {% extends "base.html" %}
 
+    <ul class="nav nav-tabs">
+      <li role="presentation" class="active"><a href="/profile">Profile</a></li>
+      <li role="presentation"><a href="/calorie">Calorie Tracker</a></li>
+    </ul>
+
     {% block content %}
     {% for date in calorie_display %}
       {{date}} <br>
