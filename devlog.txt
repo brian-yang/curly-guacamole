@@ -135,3 +135,6 @@ brianY -- 2016-12-14 9:02 PM
 
 amyX -- 2016-12-14 9:21 PM
 - Added profile route to base.html in navbar. only accessible if logged in
+
+amyX - 2016-12-14 9:35 PM
+- Implemented error page if search returns nothing
