@@ -152,5 +152,12 @@ jasonC - 2016-12-14 10:19 PM
 brianY - 2016-12-14 10:39 PM
 - Worked on README
 
+amyX - 2016-12-14 10:44 PM
+- Made design changes doc
+
 brianY - 2016-12-14 11:02 PM
 - Wrote function to update user information
+
+amyX - 2016-12-14 11:08 PM
+- Added update.html
+- Created update route in app.py
