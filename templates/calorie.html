@@ -14,6 +14,9 @@
       <li role="presentation"><a href="/profile">Profile</a></li>
       <li role="presentation" class="active"><a href="/calorie">Calorie Tracker</a></li>
     </ul>
+    {% if not calorie_display %}
+      <center><h5>It seems you haven't added any food items yet. Search for some and add, add, add! Unless you don't eat (please eat) </h4></center>
+    {% endif %}
     {% for date in calorie_display %}
       {{date}} <br>
 
