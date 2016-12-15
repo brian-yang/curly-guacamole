@@ -80,7 +80,7 @@
       <div class="col-sm-6 text-center">
         <h1>Register</h1>
         {% if register_message %}
-          {% if alarm is not equalto "" %}
+          {% if alarm != "" %}
             <div class="alert alert-success" role="alert">
               <span class="sr-only">Error:</span>
                 {{ register_message }}
