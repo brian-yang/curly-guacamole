@@ -22,7 +22,7 @@ def parse_sections(section):
 def show_nutrients(fooddata):
     results = {}
     cur_result = ""
-    
+
     for search_result in fooddata:
         for section in search_result:
             if not isinstance(section, list):
@@ -31,7 +31,13 @@ def show_nutrients(fooddata):
             else:
                 results[cur_result] = parse_sections(section)
 
-    return results    
+    return results
+
+def remove_units(calories):
+    if calories.endswith("kcal"):
+        return calories[:-4]
+    elif calories.endswith("cal"):
+        return calories[:-3]
 
 def show_bmi(data):
     results = data['bmi']

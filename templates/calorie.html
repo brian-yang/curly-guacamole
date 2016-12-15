@@ -10,6 +10,10 @@
 <body>
   {% extends "base.html" %}
   {% block content %}
-  Calories added: {{ calorie }}
+  {% for date in calorie_display %}
+  {{date}} <br>
+  Total calories: {{calorie_display[date[1]]}}<br>
+  Meals eaten:<br>
+  {% endfor %}
   {% endblock %}
 </body>

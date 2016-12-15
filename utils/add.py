@@ -19,9 +19,7 @@ def add_meal(username, meal_name, calories):
         c.execute(add_calories, (username, get_date(), meal_name, calories));
     else:
         add_calories = "UPDATE calorie_tracker SET meals=?, calorie_count=? WHERE username=? AND date=?"
-        print rows[0]
-        print meal_name
-        c.execute(add_calories, (str(rows[0]) + "|" + meal_name, float(rows[1]) + calories, username, date))
+        c.execute(add_calories, (str(rows[0]) + "|" + meal_name, float(rows[1]) + float(calories), username, date))
 
     c.close()
 

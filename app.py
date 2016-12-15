@@ -8,7 +8,7 @@ for line in f:
     key = line.strip('\n')
     apikeys.append(key)
 api_key = apikeys[0]
-    
+
 app = Flask(__name__)
 
 # ===========================================
@@ -34,7 +34,7 @@ def authenticate():
             msg = "Please enter in all the fields."
         elif auth.register(request.form['username'], request.form['password']):
             u = request.form['username']
-            gender = 'm' # NEED TO HAVE FIELD
+            gender = request.form['gender']
             age = request.form['age']
             height = request.form['height']
             weight = request.form['weight']
@@ -80,14 +80,13 @@ def display():
             return redirect(url_for("home"))
         else:
             # First API
-            url = "http://api.nal.usda.gov/ndb/search/?format=json&q=%s&sort=n&max=%d&offset=0&api_key=%s" % (request.form["lookup"], 1, api_key)
+            num_results = 5
+            url = "http://api.nal.usda.gov/ndb/search/?format=json&q=%s&sort=n&max=%d&offset=0&api_key=%s" % (request.form["lookup"], num_results, api_key)
 
             jsonf = urllib2.urlopen(url).read()
             jsonf = json.loads(jsonf)
             jsonf = jsonf["list"]["item"]
-            #print jsonf
-            #list of dictionaries
- 
+
             for index in jsonf:
                 # Second API
                 nutri = "http://api.nal.usda.gov/ndb/nutrients/?format=json&api_key=%s&nutrients=205&nutrients=204&nutrients=208&nutrients=269&nutrients=291&nutrients=301&nutrients=303&nutrients=431&nutrients=304&nutrients=305&nutrients=306&nutrients=307&nutrients=401&nutrients=415&nutrients=418&nutrients=320&ndbno=%s"%(api_key,index["ndbno"])
@@ -111,16 +110,19 @@ def display():
                         dash = y.find("--")
                         dash += 2
                         x[nutrient] = "0" + x[nutrient][2:]
- 
+
             return render_template('display.html', fooddata = d, foodname=request.form['lookup'], username=u)
     else:
         return redirect(url_for("home"))
 
-@app.route('/calorie/', methods = ["POST"])
+@app.route('/calorie/', methods = ["GET", "POST"])
 def calorie():
+    print "ok"
     if 'user' in session:
-        print request.form["food"]
-        return render_template('calorie.html', calorie = request.form["food"])
+        add.add_meal(session['user'], request.form["food_item"], parse.remove_units(request.form["calories"]))
+        calorie_tracker = get.get_calories(session['user'])
+        print calorie_tracker
+        return render_template('calorie.html', calorie_display = calorie_tracker)
     else:
         return redirect(url_for('home'))
 

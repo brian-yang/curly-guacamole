@@ -78,7 +78,7 @@ amyX -- 2016-12-13 8:48 PM
 - Stored nutrients' data in a dictionary
 
 shaeqA -- 2016-12-13 10:21 PM
-- Added functionality to API 
+- Added functionality to API
 - display data in a meaningful way (jinja)
 
 brianY -- 2016-12-13 10:34 PM
@@ -111,6 +111,15 @@ amyX -- 2016-12-14 3:33 PM
 amyX -- 2016-12-14 4:43 PM
 - Added gender option to register form
 
+brianY -- 2016-12-14 4:50 PM
+- Added template extending and blocks to template files
+- Worked more on parsing the nutrition data
+
 jasonC -- 2016-12-14 4:53 PM
 - Wrote BMI data retrieval/parsing functions
 - Added BMI API key
+
+brianY -- 2016-12-14 8:08 PM
+- Got the calories to be displayed in calorie.html
+- Made the login and register forms required
+- Wrote more functions for parsing data from the API

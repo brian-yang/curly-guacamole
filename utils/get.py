@@ -7,20 +7,41 @@ for line in f:
     apikeys.append(key)
 api_key = apikeys[1]
 
-def get_info(username, query):
+def get_calories(username):
     db = sqlite3.connect('data/users.db')
     c = db.cursor()
-    s = c.execute(query, (username,))
-    return s.fetchone()
 
-def get_calories(username):
-    query = 'SELECT * FROM calorie_tracker WHERE username=?'
-    info = get_info(username, query)
-    return [info[1], info[2], info[3]]
+    query = 'SELECT date, meals, calorie_count FROM calorie_tracker WHERE username=?'
+    dates = c.execute(query, (username,))
+
+    calorie_tracker = {}
+    if not dates:
+        return {}
+    else:
+        for date in dates:
+            if not date[1]:
+                calorie_tracker[date[0]] = 0
+            else:
+                calorie_tracker[date[0]] = [date[1], date[2]]
+
+    c.close()
+    db.commit()
+    db.close()
+
+    return calorie_tracker
+
 
 def get_user_data(username):
+    db = sqlite3.connect('data/users.db')
+    c = db.cursor()
+
     query = 'SELECT * FROM user_diagnostics WHERE username=?'
-    info = get_info(username, query)
+    info = c.execute(query, (username,)).fetchone()
+
+    c.close()
+    db.commit()
+    db.close()
+
     return [info[1], info[2], info[3], info[4]]
 
 def get_bmi(username):
