@@ -10,32 +10,34 @@
   <body>
     {% extends "base.html" %}
     {% block content %}
+    {% if error %}
+    	<h2><center><b>Search results not found</b></center></h2>
+    {% else %}
+	    <h2><center><b>Search results for: {{foodname}}</b></center></h2>
 
-    <h2><center><b>Search results for: {{foodname}}</b></center></h2>
-
-    {% for search_result in fooddata.keys() %}
-    {% if session.user %}
-    <form method="POST" action="/calorie/">
-      {% endif %}
-      <div class="panel panel-default">
-	<div class="panel-heading">
-	  <h3 class="panel-title">{{search_result}}</h3>
-	</div>
-	{% if session.user %}
-	<input type="hidden" name="food_item" value="{{search_result}}">
+	    {% for search_result in fooddata.keys() %}
+	    {% if session.user %}
+	    <form method="POST" action="/calorie/">
+	      {% endif %}
+	      <div class="panel panel-default">
+		<div class="panel-heading">
+		  <h3 class="panel-title">{{search_result}}</h3>
+		</div>
+		{% if session.user %}
+		<input type="hidden" name="food_item" value="{{search_result}}">
+		{% endif %}
+		{% for entry in fooddata[search_result].keys() %}
+		<div class="panel-body">{{entry}}: {{fooddata[search_result][entry]}}</div>
+		{% endfor %}
+		{% if session.user %}
+	    	<button type="submit" class="btn btn-primary btn-lg" name="calories" value={{ fooddata[search_result]["Energy"] }} role="button">Add</button>
+		{% endif %}
+	      </div>
+	    {% if session.user %}
+	    </form>
+	    {% endif %}
+	    {% endfor %}
 	{% endif %}
-	{% for entry in fooddata[search_result].keys() %}
-	<div class="panel-body">{{entry}}: {{fooddata[search_result][entry]}}</div>
-	{% endfor %}
-	{% if session.user %}
-    	<button type="submit" class="btn btn-primary btn-lg" name="calories" value={{ fooddata[search_result]["Energy"] }} role="button">Add</button>
-	{% endif %}
-      </div>
-    {% if session.user %}
-    </form>
-    {% endif %}
-    {% endfor %}
-
     {% endblock %}
 
   </body>

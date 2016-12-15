@@ -75,6 +75,7 @@ def display():
         u = session['user']
     else:
         u = ""
+
     d = {}
     ar = []
     if 'search' in request.form.keys():
@@ -87,9 +88,12 @@ def display():
             connection = urllib2.urlopen(url)
             jsonf = connection.read()
             connection.close()
-
+            print "lalalalal\n"
             jsonf = json.loads(jsonf)
+            if "errors" in jsonf.keys():
+                return render_template("display.html", error="Search not found")
             jsonf = jsonf["list"]["item"]
+
             for index in jsonf:
                 # Second API
                 nutri = "http://api.nal.usda.gov/ndb/nutrients/?format=json&api_key=%s&nutrients=205&nutrients=204&nutrients=208&nutrients=269&nutrients=291&nutrients=301&nutrients=303&nutrients=431&nutrients=304&nutrients=305&nutrients=306&nutrients=307&nutrients=401&nutrients=415&nutrients=418&nutrients=320&ndbno=%s"%(api_key,index["ndbno"])
