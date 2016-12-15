@@ -28,7 +28,7 @@ def authenticate():
     alert = ""
     if 'user' in session:
         u = session['user']
-        return render_template('profile.html', username = u)
+        return render_template('home.html', username = u)
 
     if 'register' in request.form.keys():
         if (int(request.form['age']) not in range(1, 101)) or (int(request.form['height']) not in range(1, 101)) or (int(request.form['weight']) not in range(1, 1001)):
