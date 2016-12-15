@@ -164,3 +164,8 @@ amyX - 2016-12-14 11:08 PM
 
 amyX - 2016-12-14 11:24 PM
 - Completed all front end requirements for updating user info
+
+jasonC - 2016-12-15 12:28 AM
+- Completed user information update functionality
+- Edited home page
+- Added Changes.pdf
