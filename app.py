@@ -142,9 +142,10 @@ def calorie():
 
 @app.route('/update/', methods = ["GET", "POST"])
 def update():
+    msg = ""
     #some function to update the thing
     #msg = "information updated"
-    return render_template('profile.html', update = msg)
+    return render_template('update.html', update = msg)
 
 @app.route('/logout/')
 def logout():

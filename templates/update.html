@@ -10,16 +10,24 @@
   <body>
     {% extends "base.html" %}
     {% block content %}
-   
-    <ul class="nav nav-tabs">
-      <li role="presentation"><a href="/profile">Profile</a></li>
-      <li role="presentation"><a href="/calorie">Calorie Tracker</a></li>
-      <li role="presentation" class="active"><a href="/update">Update Information</a></li>
-    </ul>
-    <form action="/update/" method="post">
-      <h5>Update Age:</h5><input class="form-control" type="number" name="age" placeholder="Age">
-      <h5>Update Height:</h5><input class="form-control" type="number" name="height" placeholder="Height">
-      <h5>Update Weight:</h5><input class="form-control" type="number" name="weight" placeholder="Weight">
-    </form>
+    {% if update %}
+        <div class="alert alert-success" role="alert">
+          <span class="sr-only">Update:</span>
+            {{ update }}
+        </div>
+    {% endif %}
+      <ul class="nav nav-tabs">
+        <li role="presentation"><a href="/profile">Profile</a></li>
+        <li role="presentation"><a href="/calorie">Calorie Tracker</a></li>
+        <li role="presentation" class="active"><a href="/update">Update Information</a></li>
+      </ul>
+      <form action="/update/" method="post">
+        <h5>Update Age:</h5><input class="form-control" type="number" name="age" placeholder="Age">
+        <h5>Update Height:</h5><input class="form-control" type="number" name="height" placeholder="Height">
+        <h5>Update Weight:</h5><input class="form-control" type="number" name="weight" placeholder="Weight">
+        <br/>
+        <input class="btn btn-primary" type="submit" name="update" value="update">
+      </form>
+    {% endblock %}
   </body>
 </html>
