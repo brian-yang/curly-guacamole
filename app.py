@@ -142,6 +142,7 @@ def calorie():
 
 @app.route('/update/', methods = ["GET", "POST"])
 def update():
+    red = True
     if 'user' in session:
         msg = ""
         if 'update' in request.form.keys():
@@ -149,6 +150,9 @@ def update():
             age = request.form['age']
             height = request.form['height']
             weight = request.form['weight']
+            if not height and not age and not weight:
+                msg = "You didn't enter anything. Try again."
+                return render_template('update.html', update = msg, color = red)
             info = get.get_user_data(u)
             if age == '':
                 age = info[1]
@@ -161,7 +165,8 @@ def update():
             else:
                 add.update_profile(u, age, height, weight)
                 msg = "Information updated!"
-        return render_template('update.html', update = msg)
+                red = False
+        return render_template('update.html', update = msg, color = red)
     else:
         return redirect(url_for('home'))
 
