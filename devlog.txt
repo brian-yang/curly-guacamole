@@ -142,3 +142,6 @@ amyX - 2016-12-14 9:35 PM
 amyX - 2016-12-14 9:39 PM
 - Finished creating output if search error occurs
 - Fixed calorie html page's tab active bug
+
+brianY - 2016-12-14 9:43 PM
+- Made users enter in reasonable inputs when they register

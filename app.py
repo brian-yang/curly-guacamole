@@ -31,8 +31,8 @@ def authenticate():
         return render_template('profile.html', username = u)
 
     if 'register' in request.form.keys():
-        if not request.form['username'] or not request.form['password'] or not request.form['age'] or not request.form['height'] or not request.form['weight']:
-            msg = "Please enter in all the fields."
+        if (int(request.form['age']) not in range(1, 101)) or (int(request.form['height']) not in range(1, 101)) or (int(request.form['weight']) not in range(1, 1001)):
+            msg = "Please put an age and height from 1 to 100. The weight should be from 1 to 1000."
         elif auth.register(request.form['username'], request.form['password']):
             u = request.form['username']
             gender = request.form['gender']
