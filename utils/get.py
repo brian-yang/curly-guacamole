@@ -1,4 +1,4 @@
-import urllib, urllib2, sqlite3, unirest
+import sqlite3, unirest
 
 f = open('keys.txt','r')
 apikeys = []

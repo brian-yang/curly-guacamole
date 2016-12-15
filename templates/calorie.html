@@ -1,19 +1,30 @@
 <!DOCTYPE html>
 
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Guacamole</title>
-  <link rel="stylesheet" media="screen" href="../static/bootstrap.min.css">
-</head>
+  <head>
+    <meta charset="utf-8">
+    <title>Guacamole</title>
+    <link rel="stylesheet" media="screen" href="../static/bootstrap.min.css">
+  </head>
 
-<body>
-  {% extends "base.html" %}
-  {% block content %}
-  {% for date in calorie_display %}
-  {{date}} <br>
-  Total calories: {{calorie_display[date[1]]}}<br>
-  Meals eaten:<br>
-  {% endfor %}
-  {% endblock %}
-</body>
+  <body>
+    {% extends "base.html" %}
+
+    {% block content %}
+    {% for date in calorie_display %}
+      {{date}} <br>
+
+      Total calories: {{calorie_display[date][1]}}<br>
+
+      Meals eaten:<br>
+      {% set meals_list = calorie_display[date][0].split("|") %}
+
+      {% for meal in meals_list %}
+         {{meal}}<br>
+      {% endfor %}
+
+    {% endfor %}
+
+    {% endblock %}
+  </body>
+</html>

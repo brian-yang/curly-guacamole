@@ -127,3 +127,8 @@ brianY -- 2016-12-14 8:08 PM
 amyX -- 2016-12-14 8:34 PM
 - Fixed message div colors for authenticate
 - Fixed the add buttons, preventing them from being seen by someone that's not logged in
+
+brianY -- 2016-12-14 9:02 PM
+- Fixed issues with adding meals to the calorie_tracker database
+- Fixed issues with searching with spaces
+- Added to README

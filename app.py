@@ -83,12 +83,13 @@ def display():
         else:
             # First API
             num_results = 5
-            url = "http://api.nal.usda.gov/ndb/search/?format=json&q=%s&sort=n&max=%d&offset=0&api_key=%s" % (request.form["lookup"], num_results, api_key)
+            url = "http://api.nal.usda.gov/ndb/search/?format=json&q=%s&sort=n&max=%d&offset=0&api_key=%s" % (request.form["lookup"].replace(" ", "_"), num_results, api_key)
+            connection = urllib2.urlopen(url)
+            jsonf = connection.read()
+            connection.close()
 
-            jsonf = urllib2.urlopen(url).read()
             jsonf = json.loads(jsonf)
             jsonf = jsonf["list"]["item"]
-
             for index in jsonf:
                 # Second API
                 nutri = "http://api.nal.usda.gov/ndb/nutrients/?format=json&api_key=%s&nutrients=205&nutrients=204&nutrients=208&nutrients=269&nutrients=291&nutrients=301&nutrients=303&nutrients=431&nutrients=304&nutrients=305&nutrients=306&nutrients=307&nutrients=401&nutrients=415&nutrients=418&nutrients=320&ndbno=%s"%(api_key,index["ndbno"])
@@ -119,11 +120,10 @@ def display():
 
 @app.route('/calorie/', methods = ["GET", "POST"])
 def calorie():
-    print "ok"
     if 'user' in session:
-        add.add_meal(session['user'], request.form["food_item"], parse.remove_units(request.form["calories"]))
+        if 'food_item' in request.form:
+            add.add_meal(session['user'], request.form["food_item"], parse.remove_units(request.form["calories"]))
         calorie_tracker = get.get_calories(session['user'])
-        print calorie_tracker
         return render_template('calorie.html', calorie_display = calorie_tracker)
     else:
         return redirect(url_for('home'))
