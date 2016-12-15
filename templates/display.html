@@ -30,7 +30,7 @@
 	    {% endfor %}
 	  </div>
 	</div> -->
-	{% for search_result in fooddata.keys() %}
+	<!-- {% for search_result in fooddata.keys() %}
 		<div class="panel panel-default">
 			  <div class="panel-heading">
 			    <h3 class="panel-title">{{search_result}}</h3>
@@ -43,7 +43,7 @@
 	    	{% endif %}
 	    </div>
 	{% endfor %}
-=======
+
 	<div class="panel-heading">
 	  <h3 class="panel-title">{{foodname}}</h3>
 	</div>
@@ -68,13 +68,14 @@
     {% for entry in fooddata[search_result].keys() %}
     <div class="panel-body">{{entry}}: {{fooddata[search_result][entry]}}</div>
     {% endfor %}
-    <button type="submit" class="btn btn-primary btn-lg" name="food" value={{ fooddata[search_result]["Energy"] }} role="button">Add</a>
+    {% if session.user %}
+    	<button type="submit" class="btn btn-primary btn-lg" name="food" value={{ fooddata[search_result]["Energy"] }} role="button">Add</a>
+    {% endif %}
   </div>
   {% endfor %}
   {% endblock %}
   
 </form>
->>>>>>> 9e9b5d143dc0bcf8d2e108cb02a6def87468228e
 
 </body>
 </html>
