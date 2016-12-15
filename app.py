@@ -142,10 +142,28 @@ def calorie():
 
 @app.route('/update/', methods = ["GET", "POST"])
 def update():
-    msg = ""
-    #some function to update the thing
-    #msg = "information updated"
-    return render_template('update.html', update = msg)
+    if 'user' in session:
+        msg = ""
+        if 'update' in request.form.keys():
+            u = session['user']
+            age = request.form['age']
+            height = request.form['height']
+            weight = request.form['weight']
+            info = get.get_user_data(u)
+            if age == '':
+                age = info[1]
+            if height == '':
+                height = info[2]
+            if weight == '':
+                weight = info[3]
+            if (int(age) not in range(1, 101)) or (int(height) not in range(1, 101)) or (int(weight) not in range(1, 1001)):
+                msg = "Age and height can only have values from 1 to 100. Weight can only have a value from 1 to 1000."
+            else:
+                add.update_profile(u, age, height, weight)
+                msg = "Information updated!"
+        return render_template('update.html', update = msg)
+    else:
+        return redirect(url_for('home'))
 
 @app.route('/logout/')
 def logout():
