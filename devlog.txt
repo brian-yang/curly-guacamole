@@ -138,3 +138,7 @@ amyX -- 2016-12-14 9:21 PM
 
 amyX - 2016-12-14 9:35 PM
 - Implemented error page if search returns nothing
+
+amyX - 2016-12-14 9:39 PM
+- Finished creating output if search error occurs
+- Fixed calorie html page's tab active bug
