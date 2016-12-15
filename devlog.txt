@@ -145,3 +145,6 @@ amyX - 2016-12-14 9:39 PM
 
 brianY - 2016-12-14 9:43 PM
 - Made users enter in reasonable inputs when they register
+
+brianY - 2016-12-14 10:39 PM
+- Worked on README

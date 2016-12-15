@@ -24,7 +24,7 @@
     <!-- Template styles -->
     <style>
         /* TEMPLATE STYLES */
-        
+
         html,
         body,
         .view {
@@ -32,37 +32,37 @@
         }
         /* Navigation*/
 
-        
+
         .navbar {
             background-color: transparent;
         }
-        
+
         .scrolling-navbar {
             -webkit-transition: background .5s ease-in-out, padding .5s ease-in-out;
             -moz-transition: background .5s ease-in-out, padding .5s ease-in-out;
             transition: background .5s ease-in-out, padding .5s ease-in-out;
         }
-        
+
         .top-nav-collapse {
             background-color: #1C2331;
         }
-        
+
         footer.page-footer {
             background-color: #1C2331;
             margin-top: 2rem;
         }
-        
+
         @media only screen and (max-width: 768px) {
             .navbar {
                 background-color: #1C2331;
             }
         }
         /*Call to action*/
-        
+
         .flex-center {
             color: #fff;
         }
-        
+
         .view {
             background: url("https://honestchops.com/wp-content/uploads/2014/05/DSC_0099.jpg")
             no-repeat center center fixed;
@@ -72,7 +72,7 @@
             background-size: cover;
         }
         /*Contact section*/
-        
+
         #contact .fa {
             font-size: 2.5rem;
             margin-bottom: 1rem;
@@ -107,7 +107,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#abouto">Featured</a>
                     </li>
-                    
+
                     <form class="form-inline"  action="/display/" method="post">
                     <input class="form-control" name="lookup" type="text" placeholder="Search">
 
@@ -118,16 +118,16 @@
                     <a href="/profile" style="color: #2BBBAD;" class="nav-link">Signed in as {{session.user}}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn btn-primary btn-sm fadeInDown" href="/authenticate">Logout</a>
+                        <a class="nav-link btn btn-primary btn-sm fadeInDown" href="/logout/">Logout</a>
                     </li>
                 {% else %}
                <li class="nav-item">
-                        <a class="nav-link btn btn-primary btn-sm fadeInDown" href="/authenticate">Login</a>
+                        <a class="nav-link btn btn-primary btn-sm fadeInDown" href="/authenticate/">Login</a>
                     </li>
                  {% endif %}
 
                 </ul>
-              
+
                     <!-- <a href="/profile" style="color: #2BBBAD;" class="nav-link">Signed in as {{session.user}}</a>
                     <li class="nav-item">
  -->
@@ -149,10 +149,10 @@
                 <li>
                     <p class="wow fadeInDown">#1 Nutrition &amp; Calorie Tracking App</p>
                 </li>
-                <li>
-                    <br>
-                    <a target="_blank" href="https://www.google.com" class="btn btn-default btn-lg wow fadeInRight" data-wow-delay="0.2s">Learn more</a>
-                </li>
+                <!-- <li> -->
+                <!--     <br> -->
+                <!--     <a target="_blank" href="https://www.google.com" class="btn btn-default btn-lg wow fadeInRight" data-wow-delay="0.2s">Learn more</a> -->
+                <!-- </li> -->
             </ul>
         </div>
     </div>
@@ -345,8 +345,8 @@
     <footer class="page-footer center-on-small-only">
 
         <!--Footer Links-->
-        
-       
+
+
         <!--/.Footer Links-->
 
         <div class="footer-copyright">
