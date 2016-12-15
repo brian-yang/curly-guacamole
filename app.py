@@ -99,7 +99,7 @@ def display():
             jsonf = jsonf["list"]["item"]
 
             for index in jsonf:
-                print index
+                #print index
                 # Second API
                 nutri = "http://api.nal.usda.gov/ndb/nutrients/?format=json&api_key=%s&nutrients=205&nutrients=204&nutrients=208&nutrients=269&nutrients=291&nutrients=301&nutrients=303&nutrients=431&nutrients=304&nutrients=305&nutrients=306&nutrients=307&nutrients=401&nutrients=415&nutrients=418&nutrients=320&ndbno=%s"%(api_key,index["ndbno"])
                 nutrif = json.loads(urllib2.urlopen(nutri).read())
