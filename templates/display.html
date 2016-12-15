@@ -11,7 +11,7 @@
     {% extends "base.html" %}
     {% block content %}
     {% if error %}
-    	<h2><center><b>Search results not found</b></center></h2>
+    	<h2><center><b>Search results for {{ query }} not found</b></center></h2>
     {% else %}
 	    <h2><center><b>Search results for: {{foodname}}</b></center></h2>
 

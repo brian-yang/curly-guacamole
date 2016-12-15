@@ -91,7 +91,7 @@ def display():
             print "lalalalal\n"
             jsonf = json.loads(jsonf)
             if "errors" in jsonf.keys():
-                return render_template("display.html", error="Search not found")
+                return render_template("display.html", error="Search not found", query=request.form['lookup'])
             jsonf = jsonf["list"]["item"]
 
             for index in jsonf:
