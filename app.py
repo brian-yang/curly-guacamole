@@ -88,7 +88,7 @@ def display():
             return redirect(url_for("home"))
         else:
             # First API
-            num_results = 5
+            num_results = 10
             url = "http://api.nal.usda.gov/ndb/search/?format=json&q=%s&sort=n&max=%d&offset=0&api_key=%s" % (request.form["lookup"].replace(" ", "_"), num_results, api_key)
             connection = urllib2.urlopen(url)
             jsonf = connection.read()
