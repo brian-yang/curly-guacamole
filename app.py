@@ -25,6 +25,7 @@ def home():
 
 @app.route("/authenticate/", methods = ["GET", "POST"])
 def authenticate():
+    alert = ""
     if 'user' in session:
         u = session['user']
         return render_template('profile.html', username = u)
@@ -40,9 +41,10 @@ def authenticate():
             weight = request.form['weight']
             add.add_profile(u, gender, age, height, weight)
             msg = "Successfully registered!"
+            alert = "alert alert-danger"
         else:
             msg = "Failed to register! Username is taken."
-        return render_template("authenticate.html", register_message = msg)
+        return render_template("authenticate.html", register_message = msg, alarm = alert)
 
     elif 'login' in request.form.keys():
         if not request.form['username'] or not request.form['password']:
@@ -52,7 +54,7 @@ def authenticate():
             return redirect(url_for("profile"))
         else:
             msg = "Failed to login. Username and/or password incorrect."
-        return render_template("authenticate.html", login_message = msg)
+        return render_template("authenticate.html", login_message = msg, alerm = alert)
 
     else:
         return render_template("authenticate.html")

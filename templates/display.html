@@ -10,69 +10,26 @@
   <body>
     {% extends "base.html" %}
     {% block content %}
-    <h2><center><b>Search results for: {{foodname}}</b></center></h2>
+	    <h2><center><b>Search results for: {{foodname}}</b></center></h2>
 
-    <form method="POST" action="/calorie/">
+	    <form method="POST" action="/calorie/">
+			{% for search_result in fooddata.keys() %}
+			<div class="panel panel-default">
+			  <div class="panel-heading">
+			    <h3 class="panel-title">{{search_result}}</h3>
+			  </div>
+			  {% for entry in fooddata[search_result].keys() %}
+			  	<div class="panel-body">{{entry}}: {{fooddata[search_result][entry]}}</div>
+			  {% endfor %}
 
-      <!-- 	<div class="panel panel-default">
-		<<<<<<< HEAD
-		<div class="panel-heading">
-		  <h3 class="panel-title">{{foodname}}</h3>
-		</div>
-		<div class="panel-body">
-		  {% for search_result in fooddata.keys() %}
-	    	  <h3>{{search_result}}</h3> <br>
-		  {% for entry in fooddata[search_result].keys() %}
-		  {{entry}}: {{fooddata[search_result][entry]}} <br>
-		  {% endfor %}
-		  <a class="btn btn-primary btn-lg" href="add" role="button">Add</a>
-		  <hr>
-		  {% endfor %}
-		</div>
-      </div> -->
-      <!-- {% for search_result in fooddata.keys() %}
-	   <div class="panel panel-default">
-	     <div class="panel-heading">
-	       <h3 class="panel-title">{{search_result}}</h3>
-	     </div>
-	     {% for entry in fooddata[search_result].keys() %}
-	     <div class="panel-body">{{entry}}: {{fooddata[search_result][entry]}}</div>
-	     {% endfor %}
-	     {% if session.user %}
-	     <a class="btn btn-primary btn-lg" href="/calorie" role="button">Add</a>
-	     {% endif %}
-	   </div>
-	   {% endfor %}
+			  {% if session.user %}
+			    	  <button type="submit" class="btn btn-primary btn-lg" name="calories" value={{ fooddata[search_result]["Energy"] }} role="button">Add</button>
+			  {% endif %}
 
-	   =======
-	   {% for search_result in fooddata.keys() %}
-	   <div class="panel panel-default">
-	     >>>>>>> Stashed changes
-	     <div class="panel-heading">
-	       {{search_result}}
-	       {% if session.user %}
-	       <input type="hidden" name="food_item" value="{{search_result}}">
-	       {% endif %}
-	     </div>
-	     <<<<<<< Updated upstream
-		     </div> -->
-      <form method="POST" action="/calorie/">
-
-	{% for search_result in fooddata.keys() %}
-	<div class="panel panel-default">
-	  <div class="panel-heading">
-	    <h3 class="panel-title">{{search_result}}</h3>
-	  </div>
-	  {% for entry in fooddata[search_result].keys() %}
-	  <div class="panel-body">{{entry}}: {{fooddata[search_result][entry]}}</div>
-	  {% endfor %}
-	  {% if session.user %}
-    	  <button type="submit" class="btn btn-primary btn-lg" name="calories" value={{ fooddata[search_result]["Energy"] }} role="button">Add</button>
-	  {% endif %}
-	</div>
-	{% endfor %}
-	{% endblock %}
-      </form>
+			  </div>
+			{% endfor %}
+		</form>
+	{% endblock %}      
 
   </body>
 </html>

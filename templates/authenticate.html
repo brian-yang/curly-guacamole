@@ -80,10 +80,17 @@
       <div class="col-sm-6 text-center">
         <h1>Register</h1>
         {% if register_message %}
-          <div class="alert alert-danger" role="alert">
-            <span class="sr-only">Error:</span>
-              {{ register_message }}
-          </div>
+          {% if alarm is not equalto "" %}
+            <div class="alert alert-success" role="alert">
+              <span class="sr-only">Error:</span>
+                {{ register_message }}
+            </div>
+          {% else %}
+            <div class="alert alert-danger" role="alert">
+              <span class="sr-only">Error:</span>
+                {{ register_message }}
+            </div>
+          {% endif %}
         {% endif %}
         <form action="/authenticate/" method="post">
           Create a username:
