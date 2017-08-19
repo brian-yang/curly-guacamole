@@ -2,13 +2,6 @@ from flask import Flask, render_template, session, request, redirect, url_for
 from utils import auth, add, get, parse
 import json, urllib2
 
-f = open("keys.txt","r") # opens file with name of "test.txt"
-apikeys = []
-for line in f:
-    key = line.strip('\n')
-    apikeys.append(key)
-api_key = apikeys[0]
-
 app = Flask(__name__)
 
 # ===========================================
@@ -87,23 +80,39 @@ def display():
         if not request.form['lookup']:
             return redirect(url_for("home"))
         else:
+            # Get food api key
+            api_key_food = get.getAPIKeys(0)
+
             # First API
             num_results = 10
-            url = "http://api.nal.usda.gov/ndb/search/?format=json&q=%s&sort=n&max=%d&offset=0&api_key=%s" % (request.form["lookup"].replace(" ", "_"), num_results, api_key)
-            connection = urllib2.urlopen(url)
-            jsonf = connection.read()
-            connection.close()
-            jsonf = json.loads(jsonf)
+            url = "http://api.nal.usda.gov/ndb/search/?format=json&q=%s&sort=n&max=%d&offset=0&api_key=%s" % (request.form["lookup"].replace(" ", "_"), num_results, api_key_food)
+
+            # try to connect to API
+            try:
+                connection = urllib2.urlopen(url)
+                jsonf = connection.read()
+                connection.close()
+                jsonf = json.loads(jsonf)
+            except urllib2.URLError, err:
+                # print err
+                if err.code == 403:
+                    print "403 Error. Access denied!"
+                else:
+                    print "Unknown error code: " + str(err.code)
+
+                jsonf = {"errors": err.code}
+
+            # return error
             if "errors" in jsonf.keys():
                 return render_template("display.html", error="Search not found", query=request.form['lookup'])
             jsonf = jsonf["list"]["item"]
 
+            # Second API
             for index in jsonf:
                 #print index
-                # Second API
-                nutri = "http://api.nal.usda.gov/ndb/nutrients/?format=json&api_key=%s&nutrients=205&nutrients=204&nutrients=208&nutrients=269&nutrients=291&nutrients=301&nutrients=303&nutrients=431&nutrients=304&nutrients=305&nutrients=306&nutrients=307&nutrients=401&nutrients=415&nutrients=418&nutrients=320&ndbno=%s"%(api_key,index["ndbno"])
+                nutri = "http://api.nal.usda.gov/ndb/nutrients/?format=json&api_key=%s&nutrients=205&nutrients=204&nutrients=208&nutrients=269&nutrients=291&nutrients=301&nutrients=303&nutrients=431&nutrients=304&nutrients=305&nutrients=306&nutrients=307&nutrients=401&nutrients=415&nutrients=418&nutrients=320&ndbno=%s"%(api_key_food,index["ndbno"])
                 nutrif = json.loads(urllib2.urlopen(nutri).read())
-                
+
                 z = index["name"]
                 holder = z.find("UPC")
                 if holder != -1:

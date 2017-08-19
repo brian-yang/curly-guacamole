@@ -1,11 +1,16 @@
 import sqlite3, unirest
 
-f = open('keys.txt','r')
-apikeys = []
-for line in f:
-    key = line.strip('\n')
-    apikeys.append(key)
-api_key = apikeys[1]
+# ====================================
+def getAPIKeys(pos):
+    try:
+        f = open("keys.txt","r")
+        api_keys = f.readlines()
+        return api_keys[pos].strip('\n')
+    except:
+        print pos
+        print "No API keys found."
+
+# ====================================
 
 def get_calories(username):
     db = sqlite3.connect('data/users.db')
@@ -45,9 +50,12 @@ def get_user_data(username):
     return [info[1], info[2], info[3], info[4]]
 
 def get_bmi(username):
+    # Get bmi api key
+    api_key_bmi = getAPIKeys(1)
+
     url = "https://bmi.p.mashape.com/"
     headers = {
-        "X-Mashape-Key": api_key,
+        "X-Mashape-Key": api_key_bmi,
         "Content-Type": "application/json",
         "Accept": "application/json"
     }

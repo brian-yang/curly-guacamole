@@ -40,6 +40,9 @@ def remove_units(calories):
         return calories[:-3]
 
 def show_bmi(data):
-    results = data['bmi']
-    results.pop('prime', None)
+    try:
+        results = data['bmi']
+        results.pop('prime', None)
+    except:
+        results = {"value": "N/A", "status": "N/A", "risk": "N/A"}
     return results
